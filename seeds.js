@@ -3,7 +3,7 @@ const Post = require('./models/post');
 const cities = require('./cities');
 
 async function seedPosts() {
-	await Post.remove({});
+	await Post.deleteMany({});
 	for(const i of new Array(600)) {
 		const random1000 = Math.floor(Math.random() * 1000);
 		const title = faker.lorem.word();

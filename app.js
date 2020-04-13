@@ -22,8 +22,21 @@ const reviews = require('./routes/reviews');
 
 const app = express();
 
-// connect to the database
-mongoose.connect('mongodb://localhost:27017/surf-shop', { useNewUrlParser: true });
+// Connect to DB 
+mongoose.connect(process.env.DATABASEURL, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('Connected to DB!');
+}).catch((err) => {
+  console.log('ERROR:', err.message);
+});
+
+mongoose.set('useFindAndModify', false);
+
+// addresses 302 get favicon error
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

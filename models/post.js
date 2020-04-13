@@ -37,7 +37,7 @@ const PostSchema = new Schema({
 });
 
 PostSchema.pre('remove', async function() {
-	await Review.remove({
+	await Review.deleteOne({
 		_id: {
 			$in: this.reviews
 		}
