@@ -37,5 +37,4 @@ router.put('/:id', isLoggedIn, asyncErrorHandler(isAuthor), upload.array('images
 /* DELETE posts destroy /posts/:id */
 router.delete('/:id', isLoggedIn, asyncErrorHandler(isAuthor), asyncErrorHandler(postDestroy));
 
-
 module.exports = router;
