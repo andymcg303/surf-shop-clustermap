@@ -8,6 +8,7 @@ module.exports = {
 	// Posts Index
 	async postIndex(req, res, next) {
 		const { dbQuery } = res.locals;
+		console.log(dbQuery);
 		delete res.locals.dbQuery;
 		let posts = await Post.paginate(dbQuery, {
 			page: req.query.page || 1,
